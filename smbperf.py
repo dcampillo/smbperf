@@ -42,7 +42,7 @@ elif os.path.isdir(target_file):
 	for path,dirs,files in os.walk(target_file):
 		for filename in files:
 			currentFile = os.path.join(path,filename)
-			print("Copying '%s' to '%s'" % (target_file, benchmark_dir))
+			print("Copying '%s' to '%s'" % (currentFile, benchmark_dir))
 			fileSize += os.path.getsize(currentFile)
 			shutil.copy(currentFile, benchmark_dir)
 else:
