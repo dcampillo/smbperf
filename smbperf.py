@@ -6,29 +6,35 @@ import os.path
 import shutil
 import datetime
 
+def clearBenchmarkFolder(strFolderPath):
+	print ("Cleaning benchmark folder: %s" % benchmark_dir)
+        for path,dirs,files in os.walk(benchmark_dir):
+                for filename in files:
+                        os.remove(os.path.join(benchmark_dir, filename))
+	return;
+
 # Check for arguments
 if len(sys.argv) != 2:
 	print("Wrong number of arguments!")
 	print("Usage: python smbperf.py [targetfile]")
 	sys.exit(0) 
 
-# Gather first parameter as target file to be copied
+# Setup files and benchmark folder parameters
 target_file = sys.argv[1]
 benchmark_dir = os.path.join(os.getcwd(), "bench")
 fileSize = 0
-
-
 
 # Check if benchmark folder exists
 if os.path.exists(benchmark_dir) == False:
 	#if not create the folder
 	os.makedirs(benchmark_dir)
 else:
-	print ("Clean Benchmark folder: %s" % benchmark_dir)
+	clearBenchmarkFolder(benchmark_dir)
+	#print ("Cleaning benchmark folder: %s" % benchmark_dir)
 	# if yes, recursively empty content
-	for path,dirs,files in os.walk(benchmark_dir):
-		for filename in files:
-			os.remove(os.path.join(benchmark_dir, filename))
+	#for path,dirs,files in os.walk(benchmark_dir):
+	#	for filename in files:
+	#		os.remove(os.path.join(benchmark_dir, filename))
 
 # Store time at start of the copy
 start_time = datetime.datetime.now()
@@ -56,3 +62,4 @@ avg_speed = fileSize/timespan.total_seconds()/1024/1024
 
 print("%s seconds elapsed"%timespan)
 print("%s Mb/s"%avg_speed)
+
