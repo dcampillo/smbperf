@@ -9,5 +9,5 @@ This application copies either a single file or a directory to calculate the ave
 python smbperf.py [TARGET_FILE_OR_FOLDER]
 
 example: 
-- python.py /home/david/mylargezipfile.zip
+- smbperf.py /home/david/mylargezipfile.zip
 - python smbperf.py /mnt/remotestorage/remotefolder
