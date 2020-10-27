@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 import os.path
@@ -8,9 +8,9 @@ import datetime
 
 def clearBenchmarkFolder(strFolderPath):
 	print ("Cleaning benchmark folder: %s" % benchmark_dir)
-        for path,dirs,files in os.walk(benchmark_dir):
-                for filename in files:
-                        os.remove(os.path.join(benchmark_dir, filename))
+	for path,dirs,files in os.walk(benchmark_dir):
+		for filename in files:
+			os.remove(os.path.join(benchmark_dir, filename))
 	return;
 
 # Check for arguments
@@ -63,3 +63,5 @@ avg_speed = fileSize/timespan.total_seconds()/1024/1024
 print("%s seconds elapsed"%timespan)
 print("%s Mb/s"%avg_speed)
 
+# Final clean up after the  test
+clearBenchmarkFolder(benchmark_dir)
