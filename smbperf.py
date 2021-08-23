@@ -56,14 +56,15 @@ def Benchmark(Source):
 
     avg_speed = fileSize/timespan.total_seconds()/1024/1024
 
-    print("%s seconds elapsed"%timespan)
-    print("{0:.2f} Mb/s".format(avg_speed))
+    print("Duration: {0}".format(timespan))
+    print("Data transfered: {0:.2f} MB".format(fileSize/1024/1024))
+    print("Average speed: {0:.2f} Mb/s".format(avg_speed))
 
 def parse_arguments():
     """Read arguments from a command line."""
     parser = argparse.ArgumentParser(description='Arguments get parsed via --commands')
     parser.add_argument('Target', help='File or Folder used to benchmark')
-    parser.add_argument("-c", help='Debug mode -> skip download the file', action='store_true')
+    parser.add_argument("-c", help='Keep the content of the benchmark folder after the benchmark', action='store_true')
 
     args = parser.parse_args()
     return args
@@ -72,7 +73,8 @@ def main():
     ClearBenchmarkFolder()
     Benchmark(args.Target)
     if args.c == True:
-            ClearBenchmarkFolder()
+        print("clearing benchmark")
+        ClearBenchmarkFolder()
 
 if __name__ == '__main__':
     args = parse_arguments()
