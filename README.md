@@ -1,4 +1,4 @@
-# SMBPerf v0.2b
+# SMBPerf v0.3
 
 Simple Python based network storage benchmark
 
