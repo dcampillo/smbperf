@@ -9,7 +9,7 @@ This application times the transfert of either a single file or a directory.
 
 The script allow to benchmark the whole transfert flow: storage speed and network speed. It also mimics basic file transfert common to a lot application, servers, etc.
 
-Feedbacks are welcome!
+Feedbacks are always welcome!
 
 ## Usage
 python smbperf.py [TARGET_FILE_OR_FOLDER]
