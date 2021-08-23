@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+##########################################
+# SMBPerf v0.31
+# Description: https://github.com/dcampillo/smbperf
+# Author: D. Campillo
+# Date: 23.08.2021
+##########################################
 
 import sys
 import os.path
