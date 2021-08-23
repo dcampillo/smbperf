@@ -27,7 +27,8 @@ def ClearBenchmarkFolder():
 def Benchmark(Source):
 
     # Setup files and benchmark folder parameters
-    target_file = sys.argv[1]
+    target_file = args.Target
+    #sys.argv[1]
     benchmarkDirectory = GetBenchmarkFolder()
     fileSize = 0
 
@@ -56,7 +57,7 @@ def Benchmark(Source):
     avg_speed = fileSize/timespan.total_seconds()/1024/1024
 
     print("%s seconds elapsed"%timespan)
-    print("%s Mb/s"%avg_speed)
+    print("{0:.2f} Mb/s".format(avg_speed))
 
 def parse_arguments():
     """Read arguments from a command line."""
