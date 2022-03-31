@@ -6,6 +6,7 @@
 # Date: 23.08.2021
 ##########################################
 
+#from imp import source_from_cache
 import sys
 import os.path
 import shutil
@@ -14,7 +15,7 @@ import argparse
 
 
 def GetBenchmarkFolder():
-    return os.getcwd() + '/benchmark'
+    return os.path.join(os.getcwd(), 'benchmark')
 
 def ClearBenchmarkFolder():
     benchmarkDirectory = GetBenchmarkFolder()
@@ -29,6 +30,11 @@ def ClearBenchmarkFolder():
         for filename in files:
             os.remove(os.path.join(benchmarkDirectory, filename))
     return
+
+def getOuputFile(Source, BenchmarkFolder):
+    __filename = os.path.basename(Source)
+    __output = os.path.join(BenchmarkFolder, __filename)
+    return __output
 
 def Benchmark(Source):
 
@@ -45,7 +51,12 @@ def Benchmark(Source):
     if os.path.isfile(Source):
         fileSize = os.path.getsize(Source)
         print("Copying '%s' to '%s'" % (Source, benchmarkDirectory))
-        shutil.copy(Source, benchmarkDirectory)
+        #shutil.copy(Source, benchmarkDirectory)
+        with open(Source, 'rb') as fda:
+            cpTarget = getOuputFile(Source, benchmarkDirectory)
+            print(cpTarget)
+            with open(cpTarget, 'wb') as fdb:
+                shutil.copyfileobj(fda, fdb, length=64*1024*1)
     elif os.path.isdir(target_file):
         for path,dirs,files in os.walk(target_file):
             for filename in files:
@@ -84,4 +95,6 @@ def main():
 
 if __name__ == '__main__':
     args = parse_arguments()
+    #targetpath = getOuputFile(args.Target, GetBenchmarkFolder())
+    #print(targetpath)
     main()
