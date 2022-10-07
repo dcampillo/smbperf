@@ -95,6 +95,4 @@ def main():
 
 if __name__ == '__main__':
     args = parse_arguments()
-    #targetpath = getOuputFile(args.Target, GetBenchmarkFolder())
-    #print(targetpath)
     main()
